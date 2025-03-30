@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, SafeAreaView } from 'react-native';
+import { View, Image, Text, ScrollView, SafeAreaView, StyleSheet } from 'react-native';
 import { ref, onValue } from 'firebase/database';
 import { database } from '../firebase';
 import Post from '../components/post';
@@ -36,7 +36,16 @@ export default function HomeScreen({ userId }) {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView>
+      {/* Header with Logo */}
+      <View style={styles.header}>
+        
+      </View>
+
+      <ScrollView style={{ flex: 1, backgroundColor: '#fff' }}>
+        <Image
+            source={require('../assets/icons/logo.png')}
+            style={styles.logo}
+          />
         {posts.length === 0 ? (
           <View style={{ alignItems: 'center', marginTop: 20 }}>
             <Text>No posts yet.</Text>
@@ -51,7 +60,7 @@ export default function HomeScreen({ userId }) {
               stage={post.stage}
               title={post.title}
               grade={post.grade}
-              //profileImage={require('../assets/avatar-placeholder.png')} // optional
+              // profileImage={require('../assets/avatar-placeholder.png')}
             />
           ))
         )}
@@ -59,3 +68,18 @@ export default function HomeScreen({ userId }) {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  safeArea: {
+    backgroundColor: '#ffffff', // Sets the background of the safe area to white
+  },
+  header: {
+    alignItems: 'left',
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+  },
+});

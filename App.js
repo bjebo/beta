@@ -10,6 +10,7 @@ export default function App() {
   const [userToken, setUserToken] = useState(null); 
 
   return (
+    
     <NavigationContainer>
       {isLoggedIn ? <RootNavigator userToken={userToken.token} userId={userToken.userId} />
  : <AuthNavigator setIsLoggedIn={setIsLoggedIn} setUserToken={setUserToken}/>}
